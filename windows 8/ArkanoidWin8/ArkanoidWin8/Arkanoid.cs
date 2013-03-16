@@ -79,7 +79,8 @@ namespace ArkanoidWin8
             // TODO: Add your update logic here
             screenWidth = GraphicsDevice.Viewport.Width;
             screenHeight = GraphicsDevice.Viewport.Height;
-
+            player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2), screenHeight - player1.texture.Height - PADDLE_OFFSET);
+            ball.position = new Vector2((screenWidth / 2) - (ball.texture.Width / 2), screenHeight - (player1.texture.Height * 2) + (ball.texture.Height / 2) - PADDLE_OFFSET);
             base.Update(gameTime);
         }
 
