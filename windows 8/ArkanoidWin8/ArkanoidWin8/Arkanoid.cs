@@ -7,6 +7,7 @@ using System;
 
 namespace ArkanoidWin8
 {
+   
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -24,6 +25,7 @@ namespace ArkanoidWin8
         const float BACKGROUND_BORDER = 10;
         Player player1;
         Ball ball;
+        block Blocks[15];
         public Arkanoid()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -45,7 +47,11 @@ namespace ArkanoidWin8
 
             player1 = new Player();
             ball = new Ball();
-
+            for (int i = 0; i<15; i++)
+            {
+                Blocks[i] = new block();
+            }
+            
             base.Initialize();
         }
 
@@ -57,13 +63,28 @@ namespace ArkanoidWin8
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            for (int i =0 ; i<15 ; i++)
+            {
+                Blocks[i] = Content.Load<Texture2D>(i.ToString() +".png");
+            }
             player1.texture = Content.Load<Texture2D>("Paddle.png");
 
             player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2) , screenHeight - player1.texture.Height - PADDLE_OFFSET);
             ball.texture = Content.Load<Texture2D>("Ball");
             ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
             // TODO: use this.Content to load your game content here
+            int aukstis = Blocks[0].texture.Heigth;
+             for (int i = 0; i<15; i++)
+             {
+                 if (i == 0)
+                 {
+                      Blocks[i].position = new Vector2(10,0);
+                 }
+                 else if (i <= 4)
+                 {
+                 Blocks[i].position = new Vector2((10 + Blocks[i-1].texture.Width),0 );
+                 }
+             }
         }
 
         /// <summary>
