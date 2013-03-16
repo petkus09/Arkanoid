@@ -52,11 +52,11 @@ namespace ArkanoidWin8
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
             player1.texture = Content.Load<Texture2D>("Paddle.png");
- 
-            player1.position = new Vector2(PADDLE_OFFSET, screenHeight / 2 - player1.texture.Height / 2);
+
+            player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2) , screenHeight - player1.texture.Height - PADDLE_OFFSET);
 
             ball.texture = Content.Load<Texture2D>("Ball");
-            ball.position = new Vector2(screenWidth / 2 - ball.texture.Width / 2, screenHeight / 2 - ball.texture.Height / 2);
+            ball.position = new Vector2((screenWidth / 2) - (ball.texture.Width / 2), screenHeight - (player1.texture.Height * 2) + (ball.texture.Height / 2) - PADDLE_OFFSET);
             // TODO: use this.Content to load your game content here
         }
 
