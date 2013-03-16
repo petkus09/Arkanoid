@@ -28,29 +28,29 @@ namespace ArkanoidWin8.Classes
             velocity *= speed;
         }
 
-        public void CheckWallCollision()
+        public void CheckWallCollision(float BOUND)
         {
-            if (position.X < 0)
+            if (position.X < BOUND)
             {
-                position.X = 0;
+                position.X = BOUND;
                 velocity.X *= -1;
             }
-            if (position.X + texture.Width > Arkanoid.screenWidth)
+            if (position.X + texture.Width > Arkanoid.screenWidth - BOUND)
             {
-                position.X = Arkanoid.screenWidth - texture.Width;
+                position.X = Arkanoid.screenWidth - texture.Width - BOUND;
                 velocity.X *= -1;
             }
-            if (position.Y < 0)
+            if (position.Y < BOUND)
             {
-                position.Y = 0;
+                position.Y = BOUND;
                 velocity.Y *= -1;
             }
         }
 
-        public override void Move(Vector2 amount)
+        public void Move(Vector2 amount, float BOUND)
         {
             base.Move(amount);
-            CheckWallCollision();
+            CheckWallCollision(BOUND);
         }
     }
 }

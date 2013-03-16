@@ -21,6 +21,7 @@ namespace ArkanoidWin8
         const int PADDLE_OFFSET = 70;
         const float BALL_START_SPEED = 11f;
         const float KEYBOARD_PADDLE_SPEED = 10f;
+        const float BACKGROUND_BORDER = 10;
         Player player1;
         Ball ball;
         public Arkanoid()
@@ -84,14 +85,14 @@ namespace ArkanoidWin8
             // TODO: Add your update logic here
             screenWidth = GraphicsDevice.Viewport.Width;
             screenHeight = GraphicsDevice.Viewport.Height;
-            ball.Move(ball.velocity);
+            ball.Move(ball.velocity, BACKGROUND_BORDER);
             base.Update(gameTime);
             Vector2 player1Velocity = Input.GetKeyboardInputDirection(PlayerIndex.One) * KEYBOARD_PADDLE_SPEED;
 
             player1.Move(player1Velocity);
 
             
-            if (GameObject.CheckPaddleBallCollision(player1, ball))
+            if (GameObject.CheckPaddleBallCollision(player1, ball)) //colision tikrinimas
             {
                 ball.velocity.Y = -Math.Abs(ball.velocity.Y);
             }
