@@ -127,8 +127,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\GameObject.cs" />
+    <Compile Include="Classes\Player.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Arkanoid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +141,11 @@
     <None Include="ArkanoidWin8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Ball.png" />
+    <Content Include="Assets\Paddle.png" />
+    <Content Include="Content\Ball.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Content\Paddle.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />

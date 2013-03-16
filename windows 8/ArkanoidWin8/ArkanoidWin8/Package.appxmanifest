@@ -1,39 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="754adfef-2d3b-42bd-8921-a6fefe70850c"
-            Publisher="CN=petku_000"
-            Version="1.0.0.0" />
-
+  <Identity Name="754adfef-2d3b-42bd-8921-a6fefe70850c" Publisher="CN=petku_000" Version="1.0.0.0" />
   <Properties>
     <DisplayName>ArkanoidWin8</DisplayName>
     <PublisherDisplayName>petku_000</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="ArkanoidWin8.App">
-        <VisualElements
-            DisplayName="ArkanoidWin8"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="ArkanoidWin8"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ArkanoidWin8.App">
+      <VisualElements DisplayName="ArkanoidWin8" Logo="logo.jpg" SmallLogo="Assets\SmallLogo.png" Description="ArkanoidWin8" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>

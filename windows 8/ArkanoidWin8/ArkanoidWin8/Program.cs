@@ -12,7 +12,7 @@ namespace ArkanoidWin8
         /// </summary>
         static void Main()
         {
-            var factory = new MonoGame.Framework.GameFrameworkViewSource<Game1>();
+            var factory = new MonoGame.Framework.GameFrameworkViewSource<Arkanoid>();
             Windows.ApplicationModel.Core.CoreApplication.Run(factory);
         }
     }
