@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="Classes\Ball.cs" />
     <Compile Include="Classes\GameObject.cs" />
+    <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Arkanoid.cs" />

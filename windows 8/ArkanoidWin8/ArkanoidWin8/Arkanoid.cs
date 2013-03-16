@@ -1,6 +1,9 @@
 ﻿using ArkanoidWin8.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
+
+using System;
 
 namespace ArkanoidWin8
 {
@@ -16,12 +19,15 @@ namespace ArkanoidWin8
         public static int screenHeight;
 
         const int PADDLE_OFFSET = 70;
+        const float BALL_START_SPEED = 11f;
+        const float KEYBOARD_PADDLE_SPEED = 10f;
         Player player1;
         Ball ball;
         public Arkanoid()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            TouchPanel.EnabledGestures = GestureType.FreeDrag;
         }
 
         /// <summary>
@@ -54,9 +60,8 @@ namespace ArkanoidWin8
             player1.texture = Content.Load<Texture2D>("Paddle.png");
 
             player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2) , screenHeight - player1.texture.Height - PADDLE_OFFSET);
-
             ball.texture = Content.Load<Texture2D>("Ball");
-            ball.position = new Vector2((screenWidth / 2) - (ball.texture.Width / 2), screenHeight - (player1.texture.Height * 2) + (ball.texture.Height / 2) - PADDLE_OFFSET);
+            ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
             // TODO: use this.Content to load your game content here
         }
 
@@ -79,9 +84,31 @@ namespace ArkanoidWin8
             // TODO: Add your update logic here
             screenWidth = GraphicsDevice.Viewport.Width;
             screenHeight = GraphicsDevice.Viewport.Height;
-            player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2), screenHeight - player1.texture.Height - PADDLE_OFFSET);
-            ball.position = new Vector2((screenWidth / 2) - (ball.texture.Width / 2), screenHeight - (player1.texture.Height * 2) + (ball.texture.Height / 2) - PADDLE_OFFSET);
+            ball.Move(ball.velocity);
             base.Update(gameTime);
+            Vector2 player1Velocity = Input.GetKeyboardInputDirection(PlayerIndex.One) * KEYBOARD_PADDLE_SPEED;
+
+            player1.Move(player1Velocity);
+
+            
+            if (GameObject.CheckPaddleBallCollision(player1, ball))
+            {
+                ball.velocity.Y = -Math.Abs(ball.velocity.Y);
+            }
+ 
+            if (ball.position.Y > screenHeight)
+            {
+                ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
+            }
+
+            Vector2 player1TouchVelocity;
+            Input.ProcessTouchInput(out player1TouchVelocity);
+            player1.Move(player1TouchVelocity);
+        }
+
+        void checkPaddleBallCollision()
+        {
+            
         }
 
         /// <summary>
