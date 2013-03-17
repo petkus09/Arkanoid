@@ -20,8 +20,8 @@ namespace ArkanoidWin8
         public static int screenHeight;
 
         const int PADDLE_OFFSET = 70;
-        const float BALL_START_SPEED = 15f;
-        const float KEYBOARD_PADDLE_SPEED = 4f;
+        const float BALL_START_SPEED = 10f;
+        const float KEYBOARD_PADDLE_SPEED = 8f;
         const float BACKGROUND_BORDER = 10;
         Player player1;
         Ball ball;
@@ -72,7 +72,7 @@ namespace ArkanoidWin8
             ball.texture = Content.Load<Texture2D>("kamuoliukas");
             ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
             // TODO: use this.Content to load your game content here
-            GenerateLevel(3, 5, block, BACKGROUND_BORDER);
+            GenerateLevel(3, 5, block, 0);
         }
 
         private  void GenerateLevel(int row, int collumn, Blocks[] blocker, float spacing)
