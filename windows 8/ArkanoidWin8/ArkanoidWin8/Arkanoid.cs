@@ -20,12 +20,13 @@ namespace ArkanoidWin8
         public static int screenHeight;
 
         const int PADDLE_OFFSET = 70;
-        const float BALL_START_SPEED = 11f;
-        const float KEYBOARD_PADDLE_SPEED = 10f;
+        const float BALL_START_SPEED = 15f;
+        const float KEYBOARD_PADDLE_SPEED = 4f;
         const float BACKGROUND_BORDER = 10;
         Player player1;
         Ball ball;
         Blocks[] block;
+        GameObject background;
         public Arkanoid()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -48,7 +49,7 @@ namespace ArkanoidWin8
             player1 = new Player();
             ball = new Ball();
             block = new Blocks[15];
-            
+            background = new GameObject();
             base.Initialize();
         }
 
@@ -66,9 +67,9 @@ namespace ArkanoidWin8
                 block[i].texture = Content.Load<Texture2D>(i.ToString());
             }
             player1.texture = Content.Load<Texture2D>("Paddle");
-
+            background.texture = Content.Load<Texture2D>("Background");
             player1.position = new Vector2((screenWidth / 2) - (player1.texture.Width / 2) , screenHeight - player1.texture.Height - PADDLE_OFFSET);
-            ball.texture = Content.Load<Texture2D>("Ball");
+            ball.texture = Content.Load<Texture2D>("kamuoliukas");
             ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
             // TODO: use this.Content to load your game content here
             GenerateLevel(3, 5, block, BACKGROUND_BORDER);
@@ -117,10 +118,21 @@ namespace ArkanoidWin8
             {
                 ball.velocity.Y = -Math.Abs(ball.velocity.Y);
             }
+            for (int i = 0; i < 15; i++)
+            {
+                if (GameObject.CheckPaddleBallCollision(block[i], ball))
+                {
+                    block[i].position = new Vector2(-150, -150);
+                    ball.velocity.Y = Math.Abs(ball.velocity.Y);
+                }
+            }
+
  
             if (ball.position.Y > screenHeight)
             {
                 ball.Launch(BALL_START_SPEED, player1.position.X + (player1.texture.Width / 2), player1.position.Y - (player1.texture.Height / 2));
+                GenerateLevel(3, 5, block, BACKGROUND_BORDER);
+
             }
 
             Vector2 player1TouchVelocity;
@@ -143,6 +155,7 @@ namespace ArkanoidWin8
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
+            background.Draw(_spriteBatch);
             player1.Draw(_spriteBatch);
             ball.Draw(_spriteBatch);
             for (int i = 0; i < 15; i++)

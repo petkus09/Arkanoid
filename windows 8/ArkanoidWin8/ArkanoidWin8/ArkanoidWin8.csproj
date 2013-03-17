@@ -160,8 +160,11 @@
     <Content Include="Content\7.png" />
     <Content Include="Content\8.png" />
     <Content Include="Content\9.png" />
+    <Content Include="Content\Background.jpg" />
     <Content Include="Content\Ball.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Content\BallSprite.jpg" />
+    <Content Include="Content\kamuoliukas.png" />
     <Content Include="Content\Paddle.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
