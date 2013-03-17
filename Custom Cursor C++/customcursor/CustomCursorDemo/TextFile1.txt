@@ -1,0 +1,3 @@
+thots 
+enum all available cursor types, allow selection, similar to inputscope from wp75 tacklebox
+demo custom cursor change on flyover of items
